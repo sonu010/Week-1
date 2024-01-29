@@ -1,5 +1,5 @@
 # Use a multi-stage build with a Python 3.8 image as the builder stage
-FROM python:3.8 AS builder
+FROM python:3.10.2 AS builder
 
 WORKDIR /app
 
@@ -7,9 +7,10 @@ COPY requirements.txt .
 
 # Install the required dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --upgrade Flask
 
 # Use a minimal base image for the final stage
-FROM python:3.8-slim
+FROM python:3.10.2-slim
 
 # Set the working directory to /app
 WORKDIR /app

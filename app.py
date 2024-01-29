@@ -1,8 +1,8 @@
-
 from flask import Flask, jsonify, request
 import mysql.connector
 import json
-from configparser import ConfigParser
+from urllib.parse import quote as url_quote
+#from configparser import ConfigParser
 
 app = Flask(__name__)
 
@@ -18,6 +18,11 @@ with open('config.json', 'r') as file:
 
 conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
+
+@app.route('/')
+def default_port():
+    return "This is default"
+
 
 # Define a route for creating data (POST request)
 @app.route('/create_data', methods=['POST'])

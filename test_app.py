@@ -12,7 +12,7 @@ class TestApp(unittest.TestCase):
         self.data_ids = [1, 2, 3]  # Add more data IDs as needed
 
     def test_create_data(self):
-        data = {"value1": "Test Value 1", "value2": "Test Value 2"}
+        data = {"value1": "10000", "value2": "11000"}
         response = self.app.post('/create_data', json=data)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(json.loads(response.get_data(as_text=True)), {'message': 'Data created successfully'})
@@ -30,7 +30,7 @@ class TestApp(unittest.TestCase):
             self.assertIsInstance(json.loads(response.get_data(as_text=True)), dict)
 
     def test_update_data(self):
-        data = {"value1": "Updated Value 1", "value2": "Updated Value 2"}
+        data = {"value1": "Updated value 1", "value2": "Updated Value 2"}
         for data_id in self.data_ids:
             response = self.app.put(f'/update_data/{data_id}', json=data)
             self.assertEqual(response.status_code, 200)
